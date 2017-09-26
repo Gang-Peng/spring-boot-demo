@@ -22,4 +22,13 @@ I use this command in psql to `id` as primary key and auto increased.
 
 ```
 ALTER TABLE users ADD COLUMN id BIGSERIAL PRIMARY KEY;
+
 ```
+
+## How to run the demo
+
+This is a Spring boot project, so you can directly run the jar file by following these simple steps:
+
+* `mvn clean install`
+
+* `java -jar target/demo-0.0.1-SNAPSHOT.jar`
