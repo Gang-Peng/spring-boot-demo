@@ -32,3 +32,8 @@ This is a Spring boot project, so you can directly run the jar file by following
 * `mvn clean install`
 
 * `java -jar target/demo-0.0.1-SNAPSHOT.jar`
+
+## Logging
+
+This project uses `log4j2` as logging framework. Logging configuration file is `/src/main/resources/log4j2.xml` 
+and logs are stored under `logs` folder
