@@ -2,6 +2,8 @@ package com.wljcompany.demo.resource;
 
 import com.wljcompany.demo.mapper.UserMapper;
 import com.wljcompany.demo.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,35 +20,38 @@ import java.util.List;
 public class UsersController {
 
     private UserMapper userMapper;
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
+    // This will make userMapper Autowired
     public UsersController(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 
     @GetMapping
-    List<User> getAllUsers() {
+    public List<User> getAllUsers() {
+        logger.info("Getting all users");
         return userMapper.findAll();
     }
 
     @PostMapping
-    List<User> createUser(@RequestBody User user) {
+    public List<User> createUser(@RequestBody User user) {
         userMapper.create(user);
         return userMapper.findAll();
     }
 
     @GetMapping("/{id}")
-    User getUser(@PathVariable Long id) {
+    public User getUser(@PathVariable Long id) {
         return userMapper.findById(id);
     }
 
     @PutMapping("/{id}")
-    User updateUser(@PathVariable Long id, @RequestBody User user) {
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
         userMapper.updateUser(id, user);
         return userMapper.findById(id);
     }
 
     @DeleteMapping("/{id}")
-    void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userMapper.deleteUser(id);
     }
 }
